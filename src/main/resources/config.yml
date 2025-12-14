@@ -1,6 +1,7 @@
 # o op
 # p player
 # c console
+# {player} is the player name
 Shift+F_Enable: true
 Shift+F:
   - 'o: say Shift+F'

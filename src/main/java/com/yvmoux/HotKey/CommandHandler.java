@@ -29,7 +29,7 @@ public class CommandHandler {
             executeAsPlayer(command.substring(2).trim(), player);
         } else if (command.startsWith("c:")) {
             // 控制台执行
-            executeAsConsole(command.substring(2).trim());
+            executeAsConsole(command.substring(2).trim(), player);
         } else {
             // 默认情况下作为玩家执行
             executeAsPlayer(command, player);
@@ -37,6 +37,9 @@ public class CommandHandler {
     }
 
     private void executeAsOp(String command, Player player) {
+        if (command.contains("{player}")) {
+            command = command.replace("{player}", player.getName());
+        }
         boolean wasOp = player.isOp();
         try {
             player.setOp(true);
@@ -47,10 +50,22 @@ public class CommandHandler {
     }
 
     private void executeAsPlayer(String command, Player player) {
-        scheduler.runTask(player, () -> player.performCommand(command));
+        if (command.contains("{player}")) {
+            command = command.replace("{player}", player.getName());
+        }
+        String finalCommand = command;
+        scheduler.runTask(player, () -> {
+            player.performCommand(finalCommand);
+        });
     }
 
-    private void executeAsConsole(String command) {
-        scheduler.runTask(() -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command));
+    private void executeAsConsole(String command, Player player) {
+        if (command.contains("{player}")) {
+            command = command.replace("{player}", player.getName());
+        }
+        String finalCommand = command;
+        scheduler.runTask(() -> {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), finalCommand);
+        });
     }
 }
