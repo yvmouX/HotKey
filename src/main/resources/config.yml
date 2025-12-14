@@ -1,0 +1,19 @@
+# o op
+# p player
+# c console
+Shift+F_Enable: true
+Shift+F:
+  - 'o: say Shift+F'
+
+Shift+Q_Enable: false
+Shift+Q:
+  - 'p: say Shift+Q'
+
+F_Enable: false
+F:
+  - 'c: say F'
+
+Q_Enable: false
+Q:
+  - 'c: say Q'
+

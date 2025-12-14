@@ -1,0 +1,6 @@
+name: HotKey
+version: '1.0.0'
+main: com.yvmoux.HotKey.HotKey
+api-version: '1.21'
+prefix: "HotKey"
+folia-supported: true
