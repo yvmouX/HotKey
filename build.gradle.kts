@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation(files(rootProject.file("lib/YLib-1.0.0-beta5.jar")))
+    implementation(files(rootProject.file("lib/YLib-1.0.0-beta5-all.jar")))
     compileOnly("org.spigotmc:spigot-api:1.21.8-R0.1-SNAPSHOT")
 }
 

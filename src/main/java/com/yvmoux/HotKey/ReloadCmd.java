@@ -1,6 +1,8 @@
 package com.yvmoux.HotKey;
 
+import cn.yvmou.ylib.api.command.CommandComplete;
 import cn.yvmou.ylib.api.command.CommandOptions;
+import cn.yvmou.ylib.api.command.CompleteType;
 import cn.yvmou.ylib.api.command.SubCommand;
 import org.bukkit.command.CommandSender;
 
@@ -14,6 +16,12 @@ public class ReloadCmd implements SubCommand {
     }
     @Override
     @CommandOptions(name = "reload", permission = "hotkey.command.reload", onlyPlayer = false, alias = {}, register = true, usage = "/hotkey reload")
+    @CommandComplete({
+            @CommandComplete.Tab(
+                    type = CompleteType.CUSTOM,
+                    customOptions = "reload"
+            )
+    })
     public boolean execute(CommandSender commandSender, String[] strings) {
         plugin.reloadConfig();
         config.resetValue(plugin);
